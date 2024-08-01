@@ -14,17 +14,19 @@ import { env } from './config/environment'
 const START_SERVER = () => {
   const app = express()
 
-  const hostname = env.APP_HOST
-  const port = env.APP_PORT
+  const hostname = 'localhost'
+  const port = 8017
 
   app.get('/', (req, res) => {
     // Test Absolute import mapOrder
     res.end('<h1>Hello World!</h1><hr>')
   })
 
-  app.listen(port, hostname, () => {
+  app.listen(env.APP_PORT, env.APP_HOST, () => {
     // eslint-disable-next-line no-console
-    console.log(`3. Hello ${env.AUTHOR}, I am running at ${hostname}:${port}/`)
+    console.log(
+      `3. Hello NghiaNgo, I am running at ${env.APP_HOST}:${env.APP_PORT}/`
+    )
   })
 
   exitHook(() => {

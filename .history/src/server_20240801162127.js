@@ -24,7 +24,7 @@ const START_SERVER = () => {
 
   app.listen(port, hostname, () => {
     // eslint-disable-next-line no-console
-    console.log(`3. Hello ${env.AUTHOR}, I am running at ${hostname}:${port}/`)
+    console.log(`3. Hello NghiaNgo, I am running at ${hostname}:${port}/`)
   })
 
   exitHook(() => {

@@ -3,13 +3,17 @@
  * YouTube: https://youtube.com/@trungquandev
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
-import { env } from '~/config/environment'
+import { env } from './config/environment'
+
+const MONGODB_URI =
+  'mongodb+srv://nghiangodev:qrQDffoUGt0ez877@cluster0.sdgetxu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const DATABASE_NAME = 'trello-nghiango-mern-stack'
 
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
 let trelloDatabaseInstance = null
 
-const mongoClientInstance = new MongoClient(env.MONGODB_URI, {
+const mongoClientInstance = new MongoClient(MONGODB_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -20,7 +24,7 @@ const mongoClientInstance = new MongoClient(env.MONGODB_URI, {
 export const CONNECT_DB = async () => {
   await mongoClientInstance.connect()
 
-  trelloDatabaseInstance = mongoClientInstance.db(env.DATABASE_NAME)
+  trelloDatabaseInstance = mongoClientInstance.db(DATABASE_NAME)
 }
 
 export const CLOSE_DB = async () => {
