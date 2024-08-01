@@ -26,17 +26,5 @@ const mongoClientInstance = new MongoClient(MONGODB_URI, {
 export const CONNECT_DB = async () => {
   await mongoClientInstance.connect()
 
-  trelloDatabaseInstance = mongoClientInstance.db(DATABASE_NAME)
-}
-
-export const CLOSE_DB = async () => {
-  await mongoClientInstance.close()
-}
-
-export const GET_DB = () => {
-  if (!trelloDatabaseInstance) {
-    throw new Error('Database connection not established.')
-  }
-
-  return trelloDatabaseInstance
+  trelloDatabaseInstance = mongoClientInstance.db()
 }
