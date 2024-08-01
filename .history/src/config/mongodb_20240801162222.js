@@ -3,7 +3,7 @@
  * YouTube: https://youtube.com/@trungquandev
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
-import { env } from '~/config/environment'
+import { env } from './config/environment'
 
 import { MongoClient, ServerApiVersion } from 'mongodb'
 

@@ -3,7 +3,11 @@
  * YouTube: https://youtube.com/@trungquandev
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
-import { env } from '~/config/environment'
+import { env } from './config/environment'
+
+const MONGODB_URI =
+  'mongodb+srv://nghiangodev:qrQDffoUGt0ez877@cluster0.sdgetxu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const DATABASE_NAME = 'trello-nghiango-mern-stack'
 
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
