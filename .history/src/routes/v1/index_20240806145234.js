@@ -16,6 +16,6 @@ Router.get('/status', (req, res) => {
     .json({ message: 'APIs V1 are ready to use.', code: StatusCodes.OK })
 })
 
-Router.use('/boards', boardRoutes)
+Router.use('/board', boardRoutes)
 
 export const APIs_V1 = Router
