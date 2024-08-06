@@ -6,7 +6,6 @@
  */
 
 import express from 'express'
-import { mapOrder } from '~/utils/sorts.js'
 import { CLOSE_DB, CONNECT_DB } from '~/config/mongodb'
 import exitHook from 'async-exit-hook'
 import { env } from './config/environment'
@@ -17,6 +16,8 @@ const START_SERVER = () => {
 
   const hostname = env.APP_HOST
   const port = env.APP_PORT
+
+  app.use(express.json())
 
   app.use('/v1', APIs_V1)
 
