@@ -5,6 +5,7 @@
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
 
+import { boardModel } from '~/models/boardModel'
 import { slugify } from '~/utils/formatter'
 
 const createNew = async (reqBody) => {
@@ -14,7 +15,10 @@ const createNew = async (reqBody) => {
       slug: slugify(reqBody.title)
     }
 
-    return newBoard
+    const createdBoard = await boardModel.createNew(newBoard)
+    const getRealBoard = await boardModel.findOneByID(createdBoard.insertedId)
+    console.log(getRealBoard)
+    return getRealBoard
   } catch (error) {
     throw error
   }
