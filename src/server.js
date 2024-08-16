@@ -20,7 +20,7 @@ const START_SERVER = () => {
   const hostname = env.APP_HOST
   const port = env.APP_PORT
 
-  app.use(cors())
+  app.use(cors(corsOptions))
 
   app.use(express.json())
 
