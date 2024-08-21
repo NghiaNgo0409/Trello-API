@@ -5,7 +5,7 @@
  */
 
 import Joi from 'joi'
-import { ObjectId } from 'mongodb'
+import { ObjectId, ReturnDocument } from 'mongodb'
 import { GET_DB } from '~/config/mongodb'
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators'
 import { columnModel } from './columnModel'
@@ -95,10 +95,26 @@ const getDetails = async (id) => {
   }
 }
 
+const pushColumnOrderIds = async (column) => {
+  try {
+    const result = await GET_DB()
+      .collection(BOARD_COLLECTION_NAME)
+      .findOneAndUpdate(
+        { _id: new ObjectId(column.boardId) },
+        { $push: { columnOrderIds: new ObjectId(column._id) } },
+        { ReturnDocument: 'after' }
+      )
+    return result
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 export const boardModel = {
   BOARD_COLLECTION_NAME,
   BOARD_COLLECTION_SCHEMA,
   createNew,
   findOneByID,
-  getDetails
+  getDetails,
+  pushColumnOrderIds
 }
