@@ -28,10 +28,21 @@ const START_SERVER = () => {
 
   app.use(errorHandlingMiddleware)
 
-  app.listen(port, hostname, () => {
-    // eslint-disable-next-line no-console
-    console.log(`3. Hello ${env.AUTHOR}, I am running at ${hostname}:${port}/`)
-  })
+  if (env.BUILD_MODE === 'prod') {
+    app.listen(process.env.PORT, () => {
+      // eslint-disable-next-line no-console
+      console.log(
+        `3.Production: Hello ${env.AUTHOR}, I am running at Host:${process.env.PORT}/`
+      )
+    })
+  } else {
+    app.listen(port, hostname, () => {
+      // eslint-disable-next-line no-console
+      console.log(
+        `3.Dev: Hello ${env.AUTHOR}, I am running at ${hostname}:${port}/`
+      )
+    })
+  }
 
   exitHook(() => {
     console.log('4. Closing Database......')
